@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "fresha": {
+      "command": "/path/to/fresha-api-mcp-server/.venv/bin/fresha-mcp",
+      "args": ["mcp"]
+    }
+  }
+}
