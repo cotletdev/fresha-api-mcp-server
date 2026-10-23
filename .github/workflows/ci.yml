@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: uv sync
+      - name: Compile
+        run: uv run python -m compileall -q fresha_api_mcp
+      - name: MCP server starts and lists its tools
+        run: |
+          uv run python - <<'PY'
+          import json, subprocess
+          msgs = [
+              {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"protocolVersion": "2025-06-18", "capabilities": {}, "clientInfo": {"name": "ci", "version": "1"}}},
+              {"jsonrpc": "2.0", "method": "notifications/initialized"},
+              {"jsonrpc": "2.0", "id": 2, "method": "tools/list"},
+          ]
+          out = subprocess.run([".venv/bin/fresha-mcp", "mcp"], input="\n".join(json.dumps(m) for m in msgs) + "\n",
+                               capture_output=True, text=True, timeout=60).stdout
+          tools = next(json.loads(l)["result"]["tools"] for l in out.splitlines() if '"id":2' in l.replace(" ", ""))
+          assert tools, "no tools"
+          print(len(tools), "tools")
+          PY
