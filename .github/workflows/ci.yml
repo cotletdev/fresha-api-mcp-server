@@ -20,15 +20,23 @@ jobs:
       - name: MCP server starts and lists its tools
         run: |
           uv run python - <<'PY'
-          import json, subprocess
-          msgs = [
-              {"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"protocolVersion": "2025-06-18", "capabilities": {}, "clientInfo": {"name": "ci", "version": "1"}}},
-              {"jsonrpc": "2.0", "method": "notifications/initialized"},
-              {"jsonrpc": "2.0", "id": 2, "method": "tools/list"},
-          ]
-          out = subprocess.run([".venv/bin/fresha-mcp", "mcp"], input="\n".join(json.dumps(m) for m in msgs) + "\n",
-                               capture_output=True, text=True, timeout=60).stdout
-          tools = next(json.loads(l)["result"]["tools"] for l in out.splitlines() if '"id":2' in l.replace(" ", ""))
+          import json, subprocess, sys
+          proc = subprocess.Popen([".venv/bin/fresha-mcp", "mcp"], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                                  stderr=subprocess.PIPE, text=True)
+          def ask(msg, want=None):
+              proc.stdin.write(json.dumps(msg) + "\n")
+              proc.stdin.flush()
+              while want is not None:
+                  line = proc.stdout.readline()
+                  if not line:
+                      sys.exit("server exited: " + proc.stderr.read()[-2000:])
+                  reply = json.loads(line)
+                  if reply.get("id") == want:
+                      return reply
+          ask({"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {"protocolVersion": "2025-06-18", "capabilities": {}, "clientInfo": {"name": "ci", "version": "1"}}}, 1)
+          ask({"jsonrpc": "2.0", "method": "notifications/initialized"})
+          tools = ask({"jsonrpc": "2.0", "id": 2, "method": "tools/list"}, 2)["result"]["tools"]
+          proc.terminate()
           assert tools, "no tools"
           print(len(tools), "tools")
           PY
