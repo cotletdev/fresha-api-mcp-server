@@ -11,7 +11,7 @@ from __future__ import annotations
 import asyncio
 from typing import Any
 
-__version__ = "1.0.3"
+__version__ = "1.0.4"
 
 
 def call(tool: str, args: dict[str, Any] | None = None, **kwargs: Any) -> Any:
