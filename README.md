@@ -16,11 +16,10 @@ It is for technical people who want to run it themselves, **for noncommercial us
 [![MCP Badge](https://lobehub.com/badge/mcp/cotletdev-fresha-api-mcp-server)](https://lobehub.com/mcp/cotletdev-fresha-api-mcp-server)
 
 ```bash
-git clone https://github.com/cotletdev/fresha-api-mcp-server.git && cd fresha-api-mcp-server
-python3 -m venv .venv && . .venv/bin/activate && pip install -e .
+uv tool install fresha-api-mcp                  # or: pip install fresha-api-mcp
 fresha-mcp connect                                 # reads your Fresha session from Chrome
 fresha-mcp call list_services
-claude mcp add fresha -- "$PWD/.venv/bin/fresha-mcp" mcp
+claude mcp add fresha -- uvx --from fresha-api-mcp fresha-mcp mcp
 ```
 
 ## Contents
@@ -63,6 +62,17 @@ The session lives in one cookie, `fresha_partners_session`. Fresha keeps it for 
 
 ## Install
 
+From [PyPI](https://pypi.org/project/fresha-api-mcp/):
+
+```bash
+uv tool install fresha-api-mcp       # or: pipx install fresha-api-mcp, or: pip install fresha-api-mcp
+fresha-mcp --version
+```
+
+MCP clients can also run it with no install: `uvx --from fresha-api-mcp fresha-mcp mcp`.
+
+From source:
+
 ```bash
 git clone https://github.com/cotletdev/fresha-api-mcp-server.git
 cd fresha-api-mcp-server
@@ -76,7 +86,7 @@ With [uv](https://docs.astral.sh/uv/): `uv venv && uv pip install -e .`, then `u
 
 Setting it up with an AI agent (Claude Code, Codex, Cursor)? Open it in this folder and ask it to set up the repo: [`AGENTS.md`](AGENTS.md) tells it every step, and it asks you only for the steps in Chrome.
 
-To update: `git pull && pip install -e .`. We copy every change of the hosted Fresha tools into this repo.
+To update: `uv tool upgrade fresha-api-mcp` (or `pip install -U fresha-api-mcp`), from source `git pull && pip install -e .`. We copy every change of the hosted Fresha tools into this repo.
 
 ## Connect your Chrome
 
@@ -143,9 +153,9 @@ The MCP server lists every tool with its input schema, a description written for
 ### Claude Code
 
 ```bash
-claude mcp add fresha -- /path/to/fresha-api-mcp-server/.venv/bin/fresha-mcp mcp
+claude mcp add fresha -- uvx --from fresha-api-mcp fresha-mcp mcp
 # read only:
-claude mcp add fresha -- /path/to/fresha-api-mcp-server/.venv/bin/fresha-mcp mcp --read-only
+claude mcp add fresha -- uvx --from fresha-api-mcp fresha-mcp mcp --read-only
 ```
 
 ### Claude Desktop
@@ -156,8 +166,8 @@ claude mcp add fresha -- /path/to/fresha-api-mcp-server/.venv/bin/fresha-mcp mcp
 {
   "mcpServers": {
     "fresha": {
-      "command": "/path/to/fresha-api-mcp-server/.venv/bin/fresha-mcp",
-      "args": ["mcp"]
+      "command": "uvx",
+      "args": ["--from", "fresha-api-mcp", "fresha-mcp", "mcp"]
     }
   }
 }
@@ -173,8 +183,8 @@ claude mcp add fresha -- /path/to/fresha-api-mcp-server/.venv/bin/fresha-mcp mcp
 
 ```toml
 [mcp_servers.fresha]
-command = "/path/to/fresha-api-mcp-server/.venv/bin/fresha-mcp"
-args = ["mcp"]
+command = "uvx"
+args = ["--from", "fresha-api-mcp", "fresha-mcp", "mcp"]
 ```
 
 ### Over HTTP
