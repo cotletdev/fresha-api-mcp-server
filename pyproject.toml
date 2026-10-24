@@ -24,6 +24,7 @@ Source = "https://github.com/cotletdev/fresha-api-mcp-server"
 
 [project.scripts]
 fresha-mcp = "fresha_api_mcp.cli:main"
+fresha-api-mcp = "fresha_api_mcp.cli:main"
 
 [build-system]
 requires = ["hatchling>=1.27"]

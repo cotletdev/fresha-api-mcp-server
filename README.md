@@ -1,5 +1,7 @@
 # Fresha API and MCP server, self-hosted
 
+<!-- mcp-name: dev.cotlet/fresha -->
+
 A **Fresha API** and a **Fresha MCP server** you run on your own computer, in Python, on the session of your own Google Chrome. All 17 Fresha tools we run in production at [Cotlet](https://cotlet.dev/integrations/fresha-api-mcp-server): appointments, free slots, booking, rescheduling and cancelling, blocked time, clients and client notes, services and team, the Sales summary and Sales list reports, and reviews with replies.
 
 Fresha has no public API and no official MCP server. Its only data connection is the paid Data Connector add-on, which copies your data out to a Snowflake database and cannot book anything. This repo gives you:
@@ -19,7 +21,7 @@ It is for technical people who want to run it themselves, **for noncommercial us
 uv tool install fresha-api-mcp                  # or: pip install fresha-api-mcp
 fresha-mcp connect                                 # reads your Fresha session from Chrome
 fresha-mcp call list_services
-claude mcp add fresha -- uvx --from fresha-api-mcp fresha-mcp mcp
+claude mcp add fresha -- uvx fresha-api-mcp mcp
 ```
 
 ## Contents
@@ -69,7 +71,7 @@ uv tool install fresha-api-mcp       # or: pipx install fresha-api-mcp, or: pip 
 fresha-mcp --version
 ```
 
-MCP clients can also run it with no install: `uvx --from fresha-api-mcp fresha-mcp mcp`.
+MCP clients can also run it with no install: `uvx fresha-api-mcp mcp`.
 
 From source:
 
@@ -153,9 +155,9 @@ The MCP server lists every tool with its input schema, a description written for
 ### Claude Code
 
 ```bash
-claude mcp add fresha -- uvx --from fresha-api-mcp fresha-mcp mcp
+claude mcp add fresha -- uvx fresha-api-mcp mcp
 # read only:
-claude mcp add fresha -- uvx --from fresha-api-mcp fresha-mcp mcp --read-only
+claude mcp add fresha -- uvx fresha-api-mcp mcp --read-only
 ```
 
 ### Claude Desktop
@@ -167,7 +169,7 @@ claude mcp add fresha -- uvx --from fresha-api-mcp fresha-mcp mcp --read-only
   "mcpServers": {
     "fresha": {
       "command": "uvx",
-      "args": ["--from", "fresha-api-mcp", "fresha-mcp", "mcp"]
+      "args": ["fresha-api-mcp", "mcp"]
     }
   }
 }
@@ -184,7 +186,7 @@ claude mcp add fresha -- uvx --from fresha-api-mcp fresha-mcp mcp --read-only
 ```toml
 [mcp_servers.fresha]
 command = "uvx"
-args = ["--from", "fresha-api-mcp", "fresha-mcp", "mcp"]
+args = ["fresha-api-mcp", "mcp"]
 ```
 
 ### Over HTTP

@@ -3,9 +3,7 @@
     "fresha": {
       "command": "uvx",
       "args": [
-        "--from",
         "fresha-api-mcp",
-        "fresha-mcp",
         "mcp"
       ]
     }
