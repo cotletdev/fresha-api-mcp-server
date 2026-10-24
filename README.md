@@ -8,13 +8,13 @@ Fresha has no public API and no official MCP server. Its only data connection is
 
 - **MCP server** for Claude Code, Claude Desktop, Cursor, Codex and any MCP client, over stdio or HTTP. [Setup](#mcp-server)
 - **REST API** on `http://127.0.0.1:8787/api/v1/fresha`, with OpenAPI docs at `/docs`. [Setup](#rest-api)
-- **Python**: `call("list_appointments", {"from": "2026-10-27", "to": "2026-10-27"})`, plus 9 ready scripts in [`examples/`](examples/).
+- **Python**: `call("list_appointments", {"from": "2026-10-27", "to": "2026-10-27"})`, plus 9 ready scripts in [`examples/`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/examples/).
 
 It is for technical people who want to run it themselves, **for noncommercial use only** ([license](#license)). If you want it running 24/7 on a server, kept working when Fresha changes its panel, for a team or a business, use the [hosted version at cotlet.dev](https://cotlet.dev/integrations/fresha-api-mcp-server).
 
 [![Fresha MCP server](https://img.shields.io/badge/Fresha%20MCP-17%20tools-6d4aef)](#all-17-tools)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-141318)](#requirements)
-[![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm%20Noncommercial-141318)](LICENSE)
+[![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm%20Noncommercial-141318)](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/LICENSE)
 [![MCP Badge](https://lobehub.com/badge/mcp/cotletdev-fresha-api-mcp-server)](https://lobehub.com/mcp/cotletdev-fresha-api-mcp-server)
 
 ```bash
@@ -86,7 +86,7 @@ fresha-mcp --version
 
 With [uv](https://docs.astral.sh/uv/): `uv venv && uv pip install -e .`, then `uv run fresha-mcp ...`.
 
-Setting it up with an AI agent (Claude Code, Codex, Cursor)? Open it in this folder and ask it to set up the repo: [`AGENTS.md`](AGENTS.md) tells it every step, and it asks you only for the steps in Chrome.
+Setting it up with an AI agent (Claude Code, Codex, Cursor)? Open it in this folder and ask it to set up the repo: [`AGENTS.md`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/AGENTS.md) tells it every step, and it asks you only for the steps in Chrome.
 
 To update: `uv tool upgrade fresha-api-mcp` (or `pip install -U fresha-api-mcp`), from source `git pull && pip install -e .`. We copy every change of the hosted Fresha tools into this repo.
 
@@ -177,7 +177,7 @@ claude mcp add fresha -- uvx fresha-api-mcp mcp --read-only
 
 ### Cursor
 
-`~/.cursor/mcp.json`, the same block as Claude Desktop. A ready copy is in [`mcp.json`](mcp.json).
+`~/.cursor/mcp.json`, the same block as Claude Desktop. A ready copy is in [`mcp.json`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/mcp.json).
 
 ### Codex
 
@@ -260,19 +260,19 @@ Or one tool from the shell: `fresha-mcp call find_available_slots service_ids='[
 
 Times are wall clock in the business's time zone. `2026-11-03T14:30` means 14:30 at the salon. A time with an offset is converted to it, and answers carry `time_zone`.
 
-Ready scripts in [`examples/`](examples/). Each prints JSON or a short list, takes `--out file.csv` or `--out file.json` where it makes sense, and `--help`:
+Ready scripts in [`examples/`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/examples/). Each prints JSON or a short list, takes `--out file.csv` or `--out file.json` where it makes sense, and `--help`:
 
 | Script | What it does |
 |---|---|
-| [`tomorrows_appointments.py`](examples/tomorrows_appointments.py) | Tomorrow's appointments grouped by team member. `--date`, `--all` for cancelled ones too. |
-| [`book_from_message.py`](examples/book_from_message.py) | Matches a client by name, email or phone, finds free starts for several services in a time window, and with `--book` books the first after you confirm. |
-| [`team_member_out.py`](examples/team_member_out.py) | A team member is out: blocks their hours and moves each client to a colleague free at the same time. Prints the plan; `--apply` asks before each change. |
-| [`cancel_day.py`](examples/cancel_day.py) | Cancels a team member's appointments on a day with your cancellation reason. Lists them; `--apply` asks before each one. |
-| [`daily_sales.py`](examples/daily_sales.py) | One day's Sales summary by sale type against the same weekday a week earlier, refunds over a limit flagged. |
-| [`lapsed_clients.py`](examples/lapsed_clients.py) | Clients with no appointment for N days and nothing booked, with their marketing consent. `--email-consent-only`. |
-| [`export_clients.py`](examples/export_clients.py) | Every client to CSV or JSON. `--search`, `--sort`. |
-| [`export_sales.py`](examples/export_sales.py) | The Sales list for a date range to CSV or JSON. |
-| [`unanswered_reviews.py`](examples/unanswered_reviews.py) | Reviews without a reply, lowest rating first; `--reply-to` posts a reply. |
+| [`tomorrows_appointments.py`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/examples/tomorrows_appointments.py) | Tomorrow's appointments grouped by team member. `--date`, `--all` for cancelled ones too. |
+| [`book_from_message.py`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/examples/book_from_message.py) | Matches a client by name, email or phone, finds free starts for several services in a time window, and with `--book` books the first after you confirm. |
+| [`team_member_out.py`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/examples/team_member_out.py) | A team member is out: blocks their hours and moves each client to a colleague free at the same time. Prints the plan; `--apply` asks before each change. |
+| [`cancel_day.py`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/examples/cancel_day.py) | Cancels a team member's appointments on a day with your cancellation reason. Lists them; `--apply` asks before each one. |
+| [`daily_sales.py`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/examples/daily_sales.py) | One day's Sales summary by sale type against the same weekday a week earlier, refunds over a limit flagged. |
+| [`lapsed_clients.py`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/examples/lapsed_clients.py) | Clients with no appointment for N days and nothing booked, with their marketing consent. `--email-consent-only`. |
+| [`export_clients.py`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/examples/export_clients.py) | Every client to CSV or JSON. `--search`, `--sort`. |
+| [`export_sales.py`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/examples/export_sales.py) | The Sales list for a date range to CSV or JSON. |
+| [`unanswered_reviews.py`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/examples/unanswered_reviews.py) | Reviews without a reply, lowest rating first; `--reply-to` posts a reply. |
 
 ```bash
 python examples/tomorrows_appointments.py
@@ -427,7 +427,7 @@ No. The source is public, but the license allows noncommercial use only: no busi
 
 ## License
 
-[PolyForm Noncommercial License 1.0.0](LICENSE). In short:
+[PolyForm Noncommercial License 1.0.0](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/LICENSE). In short:
 
 - **Allowed:** noncommercial use: you, for your own personal purposes with your own Fresha account, or a charity, school, public research or government body. Changing the code, and sharing it under the same license.
 - **Not allowed:** any commercial use, your own business included; client work; selling or offering it, or a service built on it.
@@ -438,7 +438,7 @@ No. The source is public, but the license allows noncommercial use only: no busi
   <a href="https://cotlet.dev">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="assets/logo-white.svg">
-      <img src="assets/logo.svg" alt="Cotlet" width="120">
+      <img src="https://raw.githubusercontent.com/cotletdev/fresha-api-mcp-server/main/assets/logo.svg" alt="Cotlet" width="120">
     </picture>
   </a>
 </p>
