@@ -1,7 +1,7 @@
 [project]
 name = "fresha-api-mcp"
 version = "1.0.1"
-description = "Self-hosted Fresha API and MCP server on your own Chrome session. Personal use only."
+description = "Self-hosted Fresha API and MCP server on your own Chrome session. Noncommercial use (PolyForm Noncommercial 1.0.0)."
 readme = "README.md"
 license = "PolyForm-Noncommercial-1.0.0"
 license-files = ["LICENSE"]

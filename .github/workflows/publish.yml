@@ -1,0 +1,27 @@
+name: Publish to PyPI
+
+# A tag v<version> (the same as `version` in pyproject.toml) builds the package and publishes it to PyPI
+# through Trusted Publishing: no token, PyPI trusts this workflow in the `pypi` environment.
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+      - name: Tag matches the package version
+        run: |
+          version=$(grep -m1 '^version = ' pyproject.toml | cut -d'"' -f2)
+          test "v$version" = "$GITHUB_REF_NAME" || { echo "tag $GITHUB_REF_NAME, pyproject $version"; exit 1; }
+      - name: Build
+        run: uv build
+      - uses: pypa/gh-action-pypi-publish@release/v1
