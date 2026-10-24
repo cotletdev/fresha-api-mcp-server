@@ -67,7 +67,7 @@ Errors come as `<code>: <message>`. `auth_expired` means Fresha signed the sessi
 | `fresha_api_mcp/app.py` | app name, domains, session cookie, account paths, REST prefix | Rarely |
 | `fresha_api_mcp/core/` | `@tool` declaration, errors, the HTTP client with the session (`context.py`), the guard against account changes (`account_guard.py`) | Yes |
 | `fresha_api_mcp/session.py` | reading cookies from Chrome over CDP, the session file | Yes |
-| `fresha_api_mcp/runner.py`, `api.py`, `mcp_server.py`, `cli.py` | tool registry, REST API, MCP server, command line | Yes |
+| `fresha_api_mcp/runner.py`, `api.py`, `mcp_server.py`, `mcp_context.py`, `cli.py` | tool registry, REST API, MCP server, its prompts and resources, command line | Yes |
 | `examples/` | scripts for common jobs | Yes |
 
 A new tool is a new file in `fresha_api_mcp/fresha/tools/` with a `@tool(...)` declaration (name, access, input schema, `route`). The registry finds it, and the REST API, the MCP server and the CLI show it without other changes. Every call goes through `client.rest` (JSON:API and reports) or `client.gql` (GraphQL), which add the workspace id Fresha needs as `__pid`.
