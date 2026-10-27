@@ -64,7 +64,7 @@ async def workspace(ctx: ToolContext) -> Workspace:
     session = await ctx.get_json(f"{API}/session", headers=_PAGE)
     workspaces = session.get("accessible_workspaces") if isinstance(session, dict) else None
     if not workspaces:
-        raise AuthExpiredError("The app signed this account out. Reconnect it in the console.")
+        raise AuthExpiredError("The app signed this account out. Sign in again in Chrome, then run connect.")
     pid = str(workspaces[0])
     provider = await rest(ctx, "GET", f"{API}/provider", pid=pid)
     locations = await rest(ctx, "GET", f"{API}/locations", pid=pid)
