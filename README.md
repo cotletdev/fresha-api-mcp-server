@@ -1,8 +1,36 @@
-# Fresha API and MCP server, self-hosted
+# Fresha API and MCP server: connect Fresha to ChatGPT and Claude
 
 <!-- mcp-name: dev.cotlet/fresha -->
 
-A **Fresha API** and a **Fresha MCP server** you run on your own computer, in Python, on the session of your own Google Chrome. All 17 Fresha tools we run in production at [Cotlet](https://cotlet.dev/integrations/fresha-api-mcp-server): appointments, free slots, booking, rescheduling and cancelling, blocked time, clients and client notes, services and team, the Sales summary and Sales list reports, and reviews with replies.
+**Yes, ChatGPT, Claude and other AI agents can work in your Fresha account.** That includes Cursor, Codex, OpenClaw and any MCP client, plus automations in n8n, Make and Zapier. Ask in plain words, and the AI reads your calendar and open slots, books and moves appointments, answers reviews and reports your sales. It shows you what it will do first and sends nothing to other people until you say so.
+
+This repo is the missing piece: 17 Fresha tools for AI assistants and scripts.
+
+## What you can ask
+
+> *Anna Smith emailed asking for a cut and colour with Sam on Friday afternoon. Find her, check the free times for both services and book the first one after my OK.*
+>
+> *Sam is sick tomorrow. Block his day and show me which of his clients a colleague can take at the same time.*
+>
+> *Yesterday's sales by sale type against the same day last week. Flag refunds over £50.*
+>
+> *List the reviews without a reply and draft a short answer to each.*
+
+## Two ways to get it
+
+| | [Ready to use, at Cotlet](https://cotlet.dev/integrations/fresha-api-mcp-server?utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=two-ways) | Run it yourself, this repo |
+|---|---|---|
+| For | salon, spa and wellness business owners | developers |
+| Setup | sign in to Fresha once, about 5 minutes, nothing to install | Python and a terminal |
+| Works in | ChatGPT and Claude apps, on your phone too, Cursor, Codex, OpenClaw, any MCP client, n8n, Make, Zapier, REST API | Claude Code, Claude Desktop, Cursor, Codex on your computer |
+| Runs | 24/7, your computer can be off | while your computer is on |
+| Price | 7 days free, no card | free |
+
+**[Start free at cotlet.dev →](https://cotlet.dev/signup?app=fresha&utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=top-button)**
+
+## Run it yourself
+
+A **Fresha API** and a **Fresha MCP server** you run on your own computer, in Python, on the session of your own Google Chrome. All 17 Fresha tools we run in production at [Cotlet](https://cotlet.dev/integrations/fresha-api-mcp-server?utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=intro): appointments, free slots, booking, rescheduling and cancelling, blocked time, clients and client notes, services and team, the Sales summary and Sales list reports, and reviews with replies.
 
 Fresha has no public API and no official MCP server. Its only data connection is the paid Data Connector add-on, which copies your data out to a Snowflake database and cannot book anything. This repo gives you:
 
@@ -10,11 +38,11 @@ Fresha has no public API and no official MCP server. Its only data connection is
 - **REST API** on `http://127.0.0.1:8787/api/v1/fresha`, with OpenAPI docs at `/docs`. [Setup](#rest-api)
 - **Python**: `call("list_appointments", {"from": "2026-10-27", "to": "2026-10-27"})`, plus 9 ready scripts in [`examples/`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/examples/).
 
-It is for technical people who want to run it themselves, **for noncommercial use only** ([license](#license)). If you want it running 24/7 on a server, kept working when Fresha changes its panel, for a team or a business, use the [hosted version at cotlet.dev](https://cotlet.dev/integrations/fresha-api-mcp-server).
+Free for your own use, your own business included ([license](#license)).
 
 [![Fresha MCP server](https://img.shields.io/badge/Fresha%20MCP-17%20tools-6d4aef)](#all-17-tools)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-141318)](#requirements)
-[![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/license-PolyForm%20Noncommercial-141318)](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/LICENSE)
+[![License: Elastic 2.0](https://img.shields.io/badge/license-Elastic%202.0-141318)](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/LICENSE)
 [![MCP Badge](https://lobehub.com/badge/mcp/cotletdev-fresha-api-mcp-server)](https://lobehub.com/mcp/cotletdev-fresha-api-mcp-server)
 
 ```bash
@@ -26,6 +54,7 @@ claude mcp add fresha -- uvx fresha-api-mcp mcp
 
 ## Contents
 
+- [Questions from Fresha users](#questions-from-fresha-users)
 - [How it works](#how-it-works)
 - [Requirements](#requirements)
 - [Install](#install)
@@ -40,6 +69,44 @@ claude mcp add fresha -- uvx fresha-api-mcp mcp
 - [Self-hosted or hosted](#self-hosted-or-hosted)
 - [FAQ](#faq)
 - [License](#license)
+
+## Questions from Fresha users
+
+**Does Fresha have an API?**
+No public one. Fresha publishes no API and no developer docs (checked 11 Oct 2026). Its Data Connector add-on, paid per location, syncs your data out to reporting tools through a Snowflake connection, and it cannot book, move or cancel appointments. This repo and [Cotlet](https://cotlet.dev/integrations/fresha-api-mcp-server?utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=faq-api) give you 17 Fresha tools as a REST API and an MCP server.
+
+**Can I get a Fresha API key?**
+Not from Fresha for your own account. With Cotlet you get your own API key that works with your Fresha account, for scripts, n8n, Make, Zapier or any HTTP client. This repo needs no key: it runs on your computer, on your own Fresha session.
+
+**Is there an official ChatGPT integration for Fresha?**
+Fresha's ChatGPT and Claude apps are for clients: they find salons and book open slots. They do not run your business. Cotlet connects your Fresha partner account to ChatGPT, Claude and other AI agents: your calendar, clients, team and sales.
+
+**How do I connect Fresha to ChatGPT?**
+Sign up at [cotlet.dev](https://cotlet.dev/signup?app=fresha&utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=faq-chatgpt), sign in to Fresha once in your Cloud Browser there, and add Cotlet to ChatGPT, following the steps in your account. Then ask ChatGPT about your Fresha like you would ask an assistant. ChatGPT needs a server on the internet, so this repo alone, running on your computer, does not connect to ChatGPT.
+
+**Can ChatGPT manage my Fresha calendar?**
+Yes, with Cotlet. It lists the day's appointments and gaps, finds open slots, books and moves appointments and blocks time. It shows you each change first.
+
+**Fresha has an AI receptionist. What does this add?**
+Fresha's AI answers your clients. With Cotlet, your own AI works for you in the back office: the calendar, clients, team and sales reports.
+
+**Can I automate Fresha with Zapier, Make or n8n?**
+Fresha has no Zapier or Make app. With Cotlet, n8n, Make and Zapier can read and book appointments and add clients, for example from a web form.
+
+**Can I use it from my phone?**
+Yes, with Cotlet: once it is set up, the ChatGPT and Claude apps on your phone can use Fresha for you.
+
+**Do I need to be technical?**
+For Cotlet, no: you sign in to Fresha and add Cotlet to ChatGPT or Claude, with step-by-step instructions in your account. This repo is for people who are fine with Python and a terminal.
+
+**Is my Fresha account safe?**
+Yes. Neither Cotlet nor this repo sees or stores your Fresha password. You sign in yourself, the way you always do, and the AI works on that signed-in session. Anything that reaches other people asks for your OK first: in Cotlet by default, here through your MCP client.
+
+**Is it free?**
+This repo is free, also in your own business. Cotlet is free for 7 days with no card, then one-time credit packs from $29, no subscription. [Pricing](https://cotlet.dev/pricing?utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=faq-price).
+
+**I manage Fresha for several accounts or clients. Does that work?**
+Yes, with Cotlet. Each Fresha login gets its own connection. Write to [contact@cotlet.dev](mailto:contact@cotlet.dev) and tell us how many accounts you manage.
 
 ## How it works
 
@@ -371,7 +438,7 @@ The REST API answers `{"error": "<code>", "message": "..."}`. The MCP server ret
 
 ## Self-hosted or hosted
 
-| | This repo | [Cotlet, hosted](https://cotlet.dev/integrations/fresha-api-mcp-server) |
+| | This repo | [Cotlet, hosted](https://cotlet.dev/integrations/fresha-api-mcp-server?utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=compare) |
 |---|---|---|
 | Tools | the same 17 | the same 17 |
 | Runs | on your computer, while it is on | in the cloud, 24/7 |
@@ -379,15 +446,12 @@ The REST API answers `{"error": "<code>", "message": "..."}`. The MCP server ret
 | When Fresha changes its panel | `git pull` once we have fixed it | fixed for you, every tool tested daily |
 | Approvals | your MCP client asks per call | bookings, moves, cancellations and review replies wait for your OK, switchable per tool |
 | Works with | MCP clients on your machine, local scripts | Claude.ai and ChatGPT connectors, n8n, Make, Zapier, any HTTP client |
-| Who may use it | you, for noncommercial use | teams, businesses, agencies |
+| Who may use it | you and your own business | you, teams, businesses, agencies |
 | Price | free | free 7-day trial with 2,000 credits, no card; then one-time packs from $29 for 5,000 credits |
 
 On the hosted version a successful call uses 10 credits, failed calls are free, and the Cloud Browser uses 50 credits a day while it has an app enabled for agents. [Full pricing](https://cotlet.dev/pricing).
 
 ## FAQ
-
-**Does Fresha have an official API?**
-No public one. Fresha publishes no API and no developer docs (checked 11 Oct 2026). Its Data Connector add-on, paid per location, syncs your data out to reporting tools through a Snowflake connection, and it cannot book, move or cancel appointments. Details: [cotlet.dev/integrations/fresha-api-mcp-server](https://cotlet.dev/integrations/fresha-api-mcp-server).
 
 **Is there a Fresha MCP server for Claude, ChatGPT or Cursor?**
 Yes, this one runs on your machine: `fresha-mcp mcp` for Claude Code, Claude Desktop, Cursor and Codex. ChatGPT and Claude.ai connectors need a public HTTPS URL, which the [hosted Fresha MCP server](https://cotlet.dev/integrations/fresha-api-mcp-server) gives you. A community server on GitHub reads Data Connector tables from Snowflake; it needs the add-on and does not write anything.
@@ -416,21 +480,18 @@ Technically yes, with a pasted cookie or a `session.json` copied from your compu
 **Will my Fresha account get banned?**
 Requests carry Chrome's fingerprint and go out one at a time, as you would click. Nobody can promise a platform never acts. Keep to your normal use.
 
-**Can I use it for my salon or for my clients?**
-No. The license allows noncommercial use only, and running your own business counts as business use. For a salon, a team or client work, use [Cotlet](https://cotlet.dev) or write to [contact@cotlet.dev](mailto:contact@cotlet.dev).
-
-**Can I use the code for anything I like?**
-No. The source is public, but the license allows noncommercial use only: no business use.
+**Can I change the code or offer it to my clients?**
+You may change it and use it in your own business. You may not offer it to others as a hosted or managed service. For client work, use [Cotlet](https://cotlet.dev?utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=faq-clients) or write to [contact@cotlet.dev](mailto:contact@cotlet.dev).
 
 **A tool broke or I need another one.**
 [Open an issue](https://github.com/cotletdev/fresha-api-mcp-server/issues) with the tool name and the error message.
 
 ## License
 
-[PolyForm Noncommercial License 1.0.0](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/LICENSE). In short:
+[Elastic License 2.0](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/LICENSE). In short:
 
-- **Allowed:** noncommercial use: you, for your own personal purposes with your own Fresha account, or a charity, school, public research or government body. Changing the code, and sharing it under the same license.
-- **Not allowed:** any commercial use, your own business included; client work; selling or offering it, or a service built on it.
+- **Allowed:** using it for yourself and in your own business, free. Changing the code and sharing it under the same license.
+- **Not allowed:** offering it to others as a hosted or managed service, removing the license notices, getting around its limits.
 
 ---
 
@@ -443,4 +504,4 @@ No. The source is public, but the license allows noncommercial use only: no busi
   </a>
 </p>
 
-Maintained by [Cotlet](https://cotlet.dev) ([@cotletdev](https://x.com/cotletdev)). Fresha is a trademark of its owner. This project is unofficial and not affiliated with, endorsed or sponsored by Fresha.
+Maintained by [Cotlet](https://cotlet.dev?utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=footer) ([@cotletdev](https://x.com/cotletdev)). Fresha is a trademark of its owner. This project is unofficial and not affiliated with, endorsed or sponsored by Fresha.
