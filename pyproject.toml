@@ -1,9 +1,9 @@
 [project]
 name = "fresha-api-mcp"
-version = "1.0.5"
-description = "Self-hosted Fresha API and MCP server on your own Chrome session. Noncommercial use (PolyForm Noncommercial 1.0.0)."
+version = "1.0.6"
+description = "Self-hosted Fresha API and MCP server on your own Chrome session. Use Fresha from Claude, Cursor, Codex or any MCP client or AI agent."
 readme = "README.md"
-license = "PolyForm-Noncommercial-1.0.0"
+license = "Elastic-2.0"
 license-files = ["LICENSE"]
 classifiers = ["Programming Language :: Python :: 3", "Topic :: Communications"]
 requires-python = ">=3.11"
