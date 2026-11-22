@@ -1,4 +1,4 @@
-# Fresha API and MCP server: connect Fresha to ChatGPT and Claude
+# Fresha API integration and MCP server: connect Fresha to ChatGPT and Claude
 
 <!-- mcp-name: dev.cotlet/fresha -->
 
@@ -22,13 +22,66 @@ As of November 2026, this repo is the missing piece: 17 Fresha tools for AI assi
 |---|---|---|
 | For | salon, spa and wellness business owners | developers |
 | Setup | sign in to Fresha once, about 5 minutes, nothing to install | Python and a terminal |
-| Works in | ChatGPT and Claude apps, on your phone too, Cursor, Codex, OpenClaw, any MCP client, n8n, Make, Zapier, REST API | Claude Code, Claude Desktop, Cursor, Codex on your computer |
+| Works in | ChatGPT and Claude apps, on your phone too, Cursor, Codex, OpenClaw, any MCP client, n8n, Make, Zapier, your own API endpoints (Custom API) | Claude Code, Claude Desktop, Cursor, Codex on your computer |
 | Runs | 24/7, your computer can be off | while your computer is on |
 | Price | 7 days free, no card | free |
 
 Cotlet is best for salon, spa and wellness business owners who want ChatGPT, Claude or another AI agent to work in Fresha for them, with nothing to install.
 
 **[Start free at cotlet.dev →](https://cotlet.dev/signup?app=fresha&utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=top-button)**
+
+## What salon, barbershop and spa owners ask their AI to do in Fresha
+
+| Job | Ask your AI | Make it repeat |
+|---|---|---|
+| Tomorrow's bookings | "Who is booked tomorrow, per team member, and where are the gaps?" | Every evening |
+| Morning summary | "Summarize new bookings, cancellations and no-shows since yesterday." | Every morning |
+| Lapsed clients | "Find clients who have not booked for 90 days and draft a win-back message for each. Send nothing yet." | Weekly |
+| Fill a cancelled slot | "Tomorrow's 11:00 cancelled. List waitlist clients who could take it and draft a message to the first one." | When a slot opens |
+| Client notes | "Add these notes from today's appointments to each client's profile. Show me before you save." | After each day |
+| Marketplace fee check | "List this month's new clients charged the marketplace fee, with how they booked, so I can check the charges." | Monthly |
+| Team pay | "Run the Pay Summary report for last week and total hours, services and tips per team member." | Every week |
+| Accounting export | "Download this month's sales and payments summary for my accountant." | Monthly |
+| Sales and clients to a spreadsheet | "Export this month's appointments, sales and new clients to a spreadsheet." | Daily or monthly |
+| Bulk price change | "Raise all colour services by 5% and show me the new prices before you save." | When prices change |
+| Import from an old system | "Import the clients in this CSV from my old booking system." | Once |
+| Leaving Fresha | "Download my clients, appointments and sales before I move." | Once |
+
+Your AI asks you before it sends, books, cancels or changes anything. Payments and refunds stay in your hands: Cotlet refuses payments.
+
+## Your own Fresha API, built with Cotlet (hosted)
+
+Fresha gives businesses no public API. With Cotlet you build your own: your AI does the job once in your Cloud Browser, you save it as an endpoint, and you call it from Google Sheets, Power BI, GoHighLevel, Klaviyo, Mailchimp, n8n, Make, Zapier, your own code.
+
+Examples you can build in a few minutes (none of them exists until you build it):
+
+| Endpoint you build | What it returns or does |
+|---|---|
+| `bookings-for-day` | appointments for a date, with client, service, team member and time |
+| `new-bookings` | bookings, cancellations and no-shows since a date |
+| `lapsed-clients` | clients with no booking for a number of days |
+| `open-slots` | free slots per team member for a date |
+| `sales-summary` | sales, payments and tips for a period |
+| `team-pay-summary` | hours, services and tips per team member for a period |
+| `clients-export` | clients with contact details, first visit and last visit |
+| `new-clients-source` | new clients in a period with how they booked |
+| `add-client-note` | adds a note to a client's profile (writes only after you allow it) |
+| `book-appointment` | books an appointment for a client and service (writes only after you allow it) |
+
+Call it with your Cotlet API key, JSON in and JSON out:
+
+```bash
+curl -X POST https://cotlet.dev/api/v1/custom/bookings-for-day \
+  -H "Authorization: Bearer $COTLET_API_KEY" -H "Content-Type: application/json" -d '{}'
+```
+
+Limits: one call runs up to 90 seconds, writes wait for your consent, payments are blocked. Start here: https://cotlet.dev/app/custom-api/new?app=fresha
+
+## Find it on Cotlet.dev
+
+- [Fresha MCP server on Cotlet.dev](https://cotlet.dev/integrations/fresha-api-mcp-server?utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=old-repo)
+- [Fresha API with Cotlet](https://cotlet.dev/integrations/api/fresha?utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=old-repo)
+- [Does Fresha have an API or MCP server?](https://cotlet.dev/api-status/fresha?utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=old-repo)
 
 ## Run it yourself
 
@@ -37,7 +90,7 @@ A **Fresha API** and a **Fresha MCP server** you run on your own computer, in Py
 Fresha has no public API and no official MCP server. Its only data connection is the paid Data Connector add-on, which copies your data out to a Snowflake database and cannot book anything. This repo gives you:
 
 - **MCP server** for Claude Code, Claude Desktop, Cursor, Codex and any MCP client, over stdio or HTTP. [Setup](#mcp-server)
-- **REST API** on `http://127.0.0.1:8787/api/v1/fresha`, with OpenAPI docs at `/docs`. [Setup](#rest-api)
+- **REST API** on `http://127.0.0.1:8787/api/v1/fresha`, with OpenAPI docs at `/docs`. [Setup](#rest-api-local-this-repo)
 - **Python**: `call("list_appointments", {"from": "2026-10-27", "to": "2026-10-27"})`, plus 9 ready scripts in [`examples/`](https://github.com/cotletdev/fresha-api-mcp-server/blob/main/examples/).
 
 Free for your own use, your own business included ([license](#license)).
@@ -64,7 +117,7 @@ claude mcp add fresha -- uvx fresha-api-mcp mcp
 - [Install](#install)
 - [Connect your Chrome](#connect-your-chrome)
 - [MCP server](#mcp-server)
-- [REST API](#rest-api)
+- [REST API](#rest-api-local-this-repo)
 - [Python and the example scripts](#python-and-the-example-scripts)
 - [All 17 tools](#all-17-tools)
 - [Configuration](#configuration)
@@ -75,6 +128,46 @@ claude mcp add fresha -- uvx fresha-api-mcp mcp
 - [License](#license)
 
 ## Questions from Fresha users
+
+**Can ChatGPT or Claude read my Fresha calendar?**
+
+Fresha's own ChatGPT and Claude apps are for clients who book. With Cotlet, ChatGPT and Claude work in your own business account: they read your calendar, clients and sales, and tell you who is booked tomorrow.
+
+**Does Fresha work with Zapier or Make?**
+
+Fresha has no Zapier app and no public API. With Cotlet you build your own Fresha endpoints, such as `new-bookings` or `clients-export`, and call them from Zapier, Make or n8n.
+
+**How do I connect Fresha to GoHighLevel?**
+
+Call your `new-bookings` endpoint from a GoHighLevel or n8n workflow on a schedule, so new bookings, cancellations and completed appointments update your contacts.
+
+**How do I get Fresha sales and client data into Google Sheets or Power BI every day?**
+
+Build `sales-summary` and `clients-export` endpoints once, then load them into Google Sheets or Power BI on a schedule.
+
+**How do I connect Fresha to Klaviyo or Mailchimp?**
+
+A `clients-export` or `new-bookings` endpoint feeds Klaviyo or Mailchimp, so clients who booked get your emails without a manual export.
+
+**Can AI fill a cancelled slot from my waitlist?**
+
+Your AI lists who could take the slot and drafts the message. It books only after you say yes.
+
+**Can AI check which clients I paid the marketplace fee for?**
+
+It lists the new clients charged the fee in a period, with how they booked, so you can check each charge with Fresha.
+
+**How do I export all my Fresha data every month as a backup?**
+
+Your AI downloads every report and list your login can export: clients, appointments and sales. A `clients-export` endpoint can run it on a schedule.
+
+**I'm leaving Fresha. How do I take my clients with me?**
+
+Your AI exports your client list, appointments and sales your login can see, as spreadsheets for your new system.
+
+**Is Cotlet affiliated with Fresha?**
+
+No. Cotlet is independent and not affiliated with Fresha.
 
 **Does Fresha have an API?**
 No public one. Fresha publishes no API and no developer docs (checked 11 Oct 2026). Its Data Connector add-on, paid per location, syncs your data out to reporting tools through a Snowflake connection, and it cannot book, move or cancel appointments. This repo and [Cotlet](https://cotlet.dev/integrations/fresha-api-mcp-server?utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=faq-api) give you 17 Fresha tools as a REST API and an MCP server.
@@ -279,7 +372,7 @@ Then ask your agent things like:
 >
 > *List the reviews without a reply and draft a short answer to each.*
 
-## REST API
+## REST API (local, this repo)
 
 ```bash
 fresha-mcp serve                   # http://127.0.0.1:8787, MCP at /mcp, docs at /docs
@@ -449,7 +542,7 @@ The REST API answers `{"error": "<code>", "message": "..."}`. The MCP server ret
 | Fresha session | your Chrome, saved in a local file | your own Cloud Browser in the EU, profile encrypted with AES-256-GCM |
 | When Fresha changes its panel | `git pull` once we have fixed it | fixed for you, every tool tested daily |
 | Approvals | your MCP client asks per call | bookings, moves, cancellations and review replies wait for your OK, switchable per tool |
-| Works with | MCP clients on your machine, local scripts | Claude.ai and ChatGPT connectors, n8n, Make, Zapier, any HTTP client |
+| Works with | MCP clients on your machine, local scripts | Claude.ai and ChatGPT connectors, n8n, Make, Zapier, any HTTP client through your own endpoints (Custom API) |
 | Who may use it | you and your own business | you, teams, businesses, agencies |
 | Price | free | free 7-day trial with 2,000 credits, no card; then one-time packs from $29 for 5,000 credits |
 

@@ -1,6 +1,6 @@
 [project]
 name = "fresha-api-mcp"
-version = "1.0.6"
+version = "1.0.7"
 description = "Self-hosted Fresha API and MCP server on your own Chrome session. Use Fresha from Claude, Cursor, Codex or any MCP client or AI agent."
 readme = "README.md"
 license = "Elastic-2.0"
