@@ -544,7 +544,7 @@ The REST API answers `{"error": "<code>", "message": "..."}`. The MCP server ret
 | Approvals | your MCP client asks per call | bookings, moves, cancellations and review replies wait for your OK, switchable per tool |
 | Works with | MCP clients on your machine, local scripts | Claude.ai and ChatGPT connectors, n8n, Make, Zapier, any HTTP client through your own endpoints (Custom API) |
 | Who may use it | you and your own business | you, teams, businesses, agencies |
-| Price | free | free 7-day trial with 2,000 credits, no card; then one-time packs from $29 for 5,000 credits |
+| Price | free | free 7-day trial, no card; then one-time packs from $29 for 5,000 credits |
 
 On the hosted version a successful call uses 10 credits, failed calls are free, and the Cloud Browser uses 50 credits a day while it has an app enabled for agents. [Full pricing](https://cotlet.dev/pricing).
 
