@@ -83,6 +83,164 @@ Limits: one call runs up to 90 seconds, writes wait for your consent, payments a
 - [Fresha API with Cotlet](https://cotlet.dev/integrations/api/fresha?utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=old-repo)
 - [Does Fresha have an API or MCP server?](https://cotlet.dev/api-status/fresha?utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=old-repo)
 
+## What you can ask your AI to do in Fresha
+
+These are real jobs Fresha users asked about. Cotlet lets ChatGPT, Claude or any MCP client do them in your own signed-in Fresha account.
+
+### Connect to other tools
+
+#### How do I connect Fresha to GoHighLevel so new bookings, cancellations and completed appointments update my contacts?
+
+Yes. Fresha has no Zapier app and no public API. With Cotlet, your agent reads new, cancelled and completed appointments in your signed-in Fresha account and updates the matching contacts in GoHighLevel, both signed in in your Cloud Browser. Nothing changes until you say yes.
+
+Ask your agent: "Read today's new, cancelled and completed Fresha appointments and update each client's contact in GoHighLevel with the status and date."
+
+As an API endpoint: Yes. Save the appointment check as an endpoint in Cotlet and call it every hour from n8n, Make or Zapier to keep GoHighLevel up to date.
+
+#### How do I connect Fresha to QuickBooks or Xero so my accountant stops asking for exports?
+
+Partly. Fresha has its own Xero and QuickBooks syncs for sales, payments, payouts, fees and team pay. With Cotlet, your agent can also read your Fresha reports and enter the totals in QuickBooks or Xero, or list what does not match. Nothing changes until you say yes.
+
+Ask your agent: "Read last week's Fresha sales and payments report and list anything that is missing in QuickBooks. Do not enter anything yet."
+
+As an API endpoint: Yes. Save the weekly sales read as an endpoint in Cotlet and call it from n8n, Make or Zapier to send the figures to your accountant.
+
+#### How do I get my Fresha sales and client data into Google Sheets or Power BI every day?
+
+Yes. Fresha's Data connector is a paid add-on that copies data to Snowflake. With Cotlet, your agent reads the sales and appointments in your signed-in Fresha account and adds the rows to a Google Sheet that Power BI can read.
+
+Ask your agent: "Read yesterday's Fresha sales and appointments and add one row per sale to my Google Sheet."
+
+As an API endpoint: Yes. Save the daily read as an endpoint in Cotlet and call it every morning from n8n, Make or Zapier to append rows to Google Sheets.
+
+#### How do I sync my Fresha calendar with Google Calendar and my iPhone calendar, and why doesn't it update?
+
+Partly. Fresha can link an external calendar both ways (Google, Apple, Outlook). When it does not update, Cotlet's agent reads your upcoming Fresha appointments and your Google Calendar and lists the ones that are missing or different.
+
+Ask your agent: "Compare my Fresha appointments for the next 7 days with my Google Calendar and list any that are missing or have a different time."
+
+As an API endpoint: Yes. Save the comparison as an endpoint in Cotlet and call it every morning from n8n, Make or Zapier to get the list by email.
+
+#### How do I connect Fresha to Klaviyo or Mailchimp so people who booked off-site get emails?
+
+Yes. With Cotlet, your agent reads new clients and their latest bookings in your signed-in Fresha account and adds them to your Klaviyo or Mailchimp list. Nothing changes until you say yes.
+
+Ask your agent: "Take Fresha clients added this week and add each one to my Mailchimp audience with name, email and last service."
+
+As an API endpoint: Yes. Save the new-client read as an endpoint in Cotlet and call it daily from n8n, Make or Zapier to update Klaviyo or Mailchimp.
+
+#### Can I track Google Ads or Meta Ads conversions from Fresha bookings?
+
+Partly. Fresha lists Meta Pixel and Google Analytics integrations on its pricing page. With Cotlet, your agent reads new bookings in your Fresha account and puts them in a Google Sheet, so you can match them with your ads reports.
+
+Ask your agent: "List Fresha bookings from the last 30 days with date, service, price and how the client booked, in one table."
+
+As an API endpoint: Yes. Save the bookings read as an endpoint in Cotlet and call it weekly from n8n, Make or Zapier to update your ads sheet.
+
+### Calendar and clients
+
+#### Can ChatGPT or Claude read my Fresha calendar and tell me who is booked tomorrow?
+
+Yes. Fresha's own ChatGPT and Claude app is for your clients, not for your calendar. With Cotlet, ChatGPT or Claude opens your signed-in Fresha calendar and tells you who is booked tomorrow, with service, time and team member.
+
+Ask your agent: "Read tomorrow's Fresha calendar and list each booking with time, client, service and team member."
+
+As an API endpoint: Yes. Save the read as an endpoint in Cotlet and call it every evening from n8n, Make or Zapier to email you tomorrow's list.
+
+#### Can an AI answer my clients' messages and write notes on their Fresha profile for me?
+
+Partly. Fresha's AI Concierge replies to client messages on a paid plan. With Cotlet, your agent reads a client's profile and recent visits in Fresha, drafts the reply and adds the note on the profile. Nothing is sent until you say yes.
+
+Ask your agent: "Read this client's Fresha profile and last visits, draft a reply to her message and add a short note to her profile. Show me both first."
+
+#### Can AI be my receptionist for Fresha: answer calls, book into my calendar and reply to reviews?
+
+Partly. Fresha's AI Concierge answers calls and messages and books into your calendar on a paid plan. Cotlet does not answer calls. With Cotlet, your agent can read new reviews in Fresha and draft each reply. Nothing is sent until you say yes.
+
+Ask your agent: "List my new Fresha reviews and draft a short, friendly public reply for each one."
+
+As an API endpoint: Yes. Save the review read as an endpoint in Cotlet and call it daily from n8n, Make or Zapier, for example to connect a voice assistant of your own.
+
+#### Can AI fill a slot in Fresha automatically when someone cancels, from my waitlist?
+
+Partly. Fresha has a waitlist screen where clients wait for an open slot. With Cotlet, your agent sees the cancellation, finds waitlist entries that fit the slot and drafts a message to the first one. Nothing is sent until you say yes.
+
+Ask your agent: "Check today's Fresha cancellations, find waitlist entries that fit each open slot and draft a message for the best match."
+
+As an API endpoint: Yes. Save the cancellation check as an endpoint in Cotlet and call it every 30 minutes from n8n, Make or Zapier.
+
+### Win-backs and fees
+
+#### Can AI find my lapsed clients in Fresha and send them a win-back message?
+
+Partly. Fresha has blast campaigns and a Client insights report on its own. With Cotlet, your agent finds clients with no visit in 60 days and nothing booked, and drafts a personal message for each. Nothing is sent until you say yes.
+
+Ask your agent: "Find Fresha clients with no visit in 60 days and no future booking, and draft a short win-back message for each."
+
+As an API endpoint: Yes. Save the lapsed-client list as an endpoint in Cotlet and call it monthly from n8n, Make or Zapier.
+
+#### Can AI check which clients I was charged the 20% Fresha marketplace fee for even though they came from my own link?
+
+Partly. Fresha lets you download your invoices and fees. With Cotlet, your agent reads those fee lines and the client records in your signed-in Fresha account and lists the clients you think were charged wrongly, so you can send them to Fresha support.
+
+Ask your agent: "Read my Fresha fee invoices for last month and list each client charged a marketplace fee, with date and amount."
+
+As an API endpoint: Yes. Save the fee read as an endpoint in Cotlet and call it monthly from n8n, Make or Zapier.
+
+### Money and team pay
+
+#### Can AI prepare my year-end tax summary from Fresha so it matches my P&L?
+
+Partly. Fresha exports reports as PDF, CSV or XLSX and lets you download invoices and fees. With Cotlet, your agent reads those reports for the whole year and builds one summary table you can compare with your P&L. It is not tax advice.
+
+Ask your agent: "Read my Fresha sales, tips, fees and refunds for this year and build one summary table by month."
+
+As an API endpoint: Yes. Save the yearly read as an endpoint in Cotlet and call it from n8n, Make or Zapier when your accountant asks.
+
+#### How do I run Fresha team pay from the Pay Summary report each week without paying for the Team Pay add-on?
+
+Yes. With Cotlet, your agent reads the Pay Summary report in your signed-in Fresha account and gives you pay per team member as a table or a Google Sheet. Cotlet does not pay anyone.
+
+Ask your agent: "Read this week's Fresha Pay Summary report and give me pay per team member in one table."
+
+As an API endpoint: Yes. Save the pay read as an endpoint in Cotlet and call it every Monday from n8n, Make or Zapier.
+
+#### How do I change prices for all my Fresha services at once, including appointments already booked?
+
+Partly. Fresha's catalog has bulk edit for service prices. With Cotlet, your agent can also open the appointments already booked and change each price in your signed-in account. Nothing changes until you say yes to the list.
+
+Ask your agent: "List every upcoming Fresha appointment for the haircut service and show the new price at 45. Wait for my OK before changing anything."
+
+### Exports, imports and leaving
+
+#### How do I export all my clients, appointments and sales from Fresha to CSV every month as a backup?
+
+Yes. Fresha exports the client list from Clients and reports as PDF, CSV or XLSX, one screen at a time by hand. With Cotlet, your agent does each export in your signed-in account and saves the files for you.
+
+Ask your agent: "Export my Fresha client list, this month's appointments and sales to separate CSV files."
+
+As an API endpoint: Yes. Save the export as an endpoint in Cotlet and call it on the first of each month from n8n, Make or Zapier.
+
+#### I'm leaving Fresha. How do I take my clients, consultation forms and reviews with me?
+
+Partly. Fresha exports the client list and reports, but its help centre shows no export for forms and reviews. With Cotlet, your agent opens each client form and review in your signed-in account and saves the text to files you keep.
+
+Ask your agent: "Save every Fresha client form and review to files, one per client, plus the client list as CSV."
+
+#### How do I import my client list and services into Fresha from my old booking system?
+
+Partly. Fresha imports client lists and products, but its help centre shows no import for services. With Cotlet, your agent adds the services one by one from your spreadsheet. Nothing is created until you say yes.
+
+Ask your agent: "Take the services in this spreadsheet and add each one to Fresha with its price and duration. Show me the first five first."
+
+#### How do I get a morning summary of new Fresha bookings and update my records from a spreadsheet automatically?
+
+Yes. With Cotlet, your agent reads yesterday's new bookings in your signed-in Fresha account and gives you a short summary. It can also update client details from a spreadsheet. Nothing changes until you say yes.
+
+Ask your agent: "Summarise Fresha bookings made since yesterday, then update client phone numbers from my spreadsheet. Show me the changes first."
+
+As an API endpoint: Yes. Save the summary as an endpoint in Cotlet and call it every morning from n8n, Make or Zapier to get it by email.
+
 ## Run it yourself
 
 A **Fresha API** and a **Fresha MCP server** you run on your own computer, in Python, on the session of your own Google Chrome. All 17 Fresha tools we run in production at [Cotlet](https://cotlet.dev/integrations/fresha-api-mcp-server?utm_source=github&utm_medium=readme&utm_campaign=fresha&utm_content=intro): appointments, free slots, booking, rescheduling and cancelling, blocked time, clients and client notes, services and team, the Sales summary and Sales list reports, and reviews with replies.
